@@ -15,10 +15,10 @@ public class Employee
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int employeeID;
-    private String firstName;
-    private String lastName;
-    private String username;
+    private int employee_ID;
+    private String first_Name;
+    private String last_Name;
+    private String user_name;
     private String password;
     private int role;///
 

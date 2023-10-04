@@ -1,9 +1,8 @@
 package dk.kea.kinoxp_rest.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -16,7 +15,14 @@ public class Statistic
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int statisticID;
-    private int ticketsSold;
-    private int movieID;
+    private int statistic_ID;
+    private int tickets_Sold;
+    private int movie_ID;
+
+    @OneToOne
+    @JoinColumn(name = "movie_idfk", referencedColumnName = "movie_id", nullable = false)
+//@JsonManagedReference
+    private Movie movie;
+
+
 }

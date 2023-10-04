@@ -16,9 +16,9 @@ public class Showtime
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int showtimeID;
+    private int showtime_ID;
     private LocalTime startTime;
-
+//Movie_id is not foreign key
     @ManyToMany
     @JoinTable(
             name = "movie_showtime",

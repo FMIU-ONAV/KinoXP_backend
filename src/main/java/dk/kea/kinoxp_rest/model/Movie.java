@@ -5,6 +5,7 @@ import lombok.*;
 import dk.kea.kinoxp_rest.model.Showtime;
 
 import java.time.LocalTime;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -17,7 +18,7 @@ public class Movie
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int movieID;
+    private int movie_ID;
     private String title;
     private LocalTime duration;
     private String director;
@@ -39,4 +40,11 @@ private Set<Showtime> showtimes;
 
     @ManyToMany(mappedBy = "movies")
     private Set<Employee> employees;
+
+
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
+    private List<Ticket> tickets;
+
+    @OneToOne(mappedBy = "movie", cascade = CascadeType.ALL)
+    private Statistic statistic;
 }

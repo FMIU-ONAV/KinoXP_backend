@@ -1,10 +1,9 @@
 package dk.kea.kinoxp_rest.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -16,8 +15,19 @@ public class Seat
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int seatID;
+    private int seat_ID;
     private String seat;
     private boolean isReserved;
-    private int theaterID;
+    private int theater_ID;
+
+
+    @OneToOne (cascade = CascadeType.ALL, mappedBy = "seat")
+    private Ticket ticket;
+
+    @ManyToOne
+    @JoinColumn(name = "theater_idfk")
+    private Theater theater;
+
+
+
 }

@@ -1,10 +1,10 @@
 package dk.kea.kinoxp_rest.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.engine.internal.Cascade;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -16,8 +16,12 @@ public class Theater
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int theaterID;
-    private int totalRows;
-    private int totalSeatsPerRow;
+    private int theater_ID;
+    private int total_rows;
+    private int total_Seat_Per_Row;
+
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "theater")
+    private List<Seat> seats;
 
 }

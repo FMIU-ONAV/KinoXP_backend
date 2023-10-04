@@ -16,7 +16,7 @@ public class Snack
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int snackID;
+    private int snack_ID;
     private Enum snackType;
-    private int ticketID;
+    private int ticket_ID;
 }
