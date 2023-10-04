@@ -47,4 +47,15 @@ private Set<Showtime> showtimes;
 
     @OneToOne(mappedBy = "movie", cascade = CascadeType.ALL)
     private Statistic statistic;
+
+    public Movie(int id, String title, String director, String description, String imgRef, int ageLimit, LocalTime duration, Set<Category> categories) {
+        this.movie_ID = id;
+        this.title = title;
+        this.director = director;
+        this.description = description;
+        this.imgRef = imgRef;
+        this.ageLimit = ageLimit;
+        this.duration = duration;
+        this.categories = categories;
+    }
 }
