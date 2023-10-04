@@ -32,4 +32,8 @@ public class Movie
 
 @ManyToMany(mappedBy = "movies")
 private Set<Showtime> showtimes;
+
+
+    @ManyToMany(mappedBy = "movies")
+    private Set<Category> categories;
 }
