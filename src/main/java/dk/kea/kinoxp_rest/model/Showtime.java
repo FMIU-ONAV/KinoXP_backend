@@ -1,12 +1,10 @@
 package dk.kea.kinoxp_rest.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalTime;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -20,4 +18,12 @@ public class Showtime
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int showtimeID;
     private LocalTime startTime;
+
+    @ManyToMany
+    @JoinTable(
+            name = "movie_showtime",
+            joinColumns = @JoinColumn(name = "showtime_id"),
+            inverseJoinColumns = @JoinColumn(name = "movie_id")
+    )
+    private Set<Movie> movies;
 }

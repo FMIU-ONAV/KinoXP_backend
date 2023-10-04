@@ -1,12 +1,11 @@
 package dk.kea.kinoxp_rest.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+import dk.kea.kinoxp_rest.model.Showtime;
 
 import java.time.LocalTime;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -25,4 +24,12 @@ public class Movie
     private String description;
     private String imgRef;
     private int ageLimit;
+
+
+//    @ManyToMany
+//    @JoinTable(name = "Movie_Showtime", joinColumns = @JoinColumn(name = "movie_id"), inverseJoinColumns =
+//    @JoinColumn(name = "showtime_id"))
+
+@ManyToMany(mappedBy = "movies")
+private Set<Showtime> showtimes;
 }
