@@ -20,9 +20,11 @@ public class Movie
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int movie_ID;
     private String title;
-    private LocalTime duration;
+    private int duration;
     private String director;
+    @Column(length = 1000)
     private String description;
+    @Column(name="img_ref")
     private String imgRef;
     private int ageLimit;
 
@@ -48,7 +50,7 @@ private Set<Showtime> showtimes;
     @OneToOne(mappedBy = "movie", cascade = CascadeType.ALL)
     private Statistic statistic;
 
-    public Movie(int id, String title, String director, String description, String imgRef, int ageLimit, LocalTime duration, Set<Category> categories) {
+    public Movie(int id, String title, String director, String description, String imgRef, int ageLimit, int duration, Set<Category> categories) {
         this.movie_ID = id;
         this.title = title;
         this.director = director;

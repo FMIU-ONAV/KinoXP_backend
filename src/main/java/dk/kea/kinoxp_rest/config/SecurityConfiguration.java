@@ -38,7 +38,7 @@ public class SecurityConfiguration implements WebMvcConfigurer {
                 // "antMathcers" comes from Apache Ant build system.
                 // Since Spring 3, the next line replaces the old one:
                 // .authorizeRequests().antMatchers("/login", "/signup").permitAll()
-        .authorizeHttpRequests().requestMatchers("/login", "/signup").permitAll()
+        .authorizeHttpRequests().requestMatchers("/login", "/signup", "/movie").permitAll()
         .anyRequest().authenticated()
         .and()
         .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint)
@@ -58,7 +58,7 @@ public class SecurityConfiguration implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         System.out.println("addCorsMappings called");
         registry.addMapping("/**")  // /** means match any string recursively
-                .allowedOriginPatterns("http://localhost:*") //Multiple strings allowed. Wildcard * matches all port numbers.
+                .allowedOriginPatterns("http://localhost:*", "http://127.0.0.1:5500/") //Multiple strings allowed. Wildcard * matches all port numbers.
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS") // decide which methods to allow
                 .allowCredentials(true);
     }
