@@ -36,4 +36,7 @@ private Set<Showtime> showtimes;
 
     @ManyToMany(mappedBy = "movies")
     private Set<Category> categories;
+
+    @ManyToMany(mappedBy = "movies")
+    private Set<Employee> employees;
 }

@@ -1,10 +1,9 @@
 package dk.kea.kinoxp_rest.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.Set;
 
 @Entity
 @Getter
@@ -22,4 +21,16 @@ public class Employee
     private String username;
     private String password;
     private int role;///
+
+
+
+
+    @ManyToMany
+    @JoinTable(
+            name = "movie_Employee",
+            joinColumns = {@JoinColumn(name = "employee_id")},
+            inverseJoinColumns = {@JoinColumn(name = "movie_id")}
+    )
+    private Set<Movie> movies;
+
 }
