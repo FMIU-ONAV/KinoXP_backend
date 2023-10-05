@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MovieService {
@@ -33,5 +34,10 @@ public class MovieService {
     public List<MovieDTO> getAllMovies(){
         List<Movie> movies = movieRepository.findAll();
         return movies.stream().map(movieConverter::toDTO).toList();
+    }
+
+    public MovieDTO getMovieById(int id) {
+        Optional<Movie> optionalMovie = movieRepository.findById(id);
+        return optionalMovie.map(movieConverter::toDTO).orElse(null);
     }
 }
