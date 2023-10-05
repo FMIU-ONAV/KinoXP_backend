@@ -20,9 +20,11 @@ public class Movie
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int movie_ID;
     private String title;
-    private LocalTime duration;
+    private int duration;
     private String director;
+    @Column(length = 1000)
     private String description;
+    @Column(name="img_ref")
     private String imgRef;
     private int ageLimit;
 
@@ -31,11 +33,11 @@ public class Movie
 //    @JoinTable(name = "Movie_Showtime", joinColumns = @JoinColumn(name = "movie_id"), inverseJoinColumns =
 //    @JoinColumn(name = "showtime_id"))
 
-@ManyToMany(mappedBy = "movies")
-private Set<Showtime> showtimes;
-
-
-    @ManyToMany(mappedBy = "movies")
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "Movie_Category",
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories;
 
     @ManyToMany(mappedBy = "movies")
@@ -47,4 +49,15 @@ private Set<Showtime> showtimes;
 
     @OneToOne(mappedBy = "movie", cascade = CascadeType.ALL)
     private Statistic statistic;
+
+    public Movie(int id, String title, String director, String description, String imgRef, int ageLimit, int duration, Set<Category> categories) {
+        this.movie_ID = id;
+        this.title = title;
+        this.director = director;
+        this.description = description;
+        this.imgRef = imgRef;
+        this.ageLimit = ageLimit;
+        this.duration = duration;
+        this.categories = categories;
+    }
 }
