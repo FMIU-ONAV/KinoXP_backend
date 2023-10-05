@@ -17,13 +17,4 @@ public class Category
     private String name;
 
 
-    @ManyToMany
-    @JoinTable(
-            name = "movie_Category",
-            joinColumns = {@JoinColumn(name = "category_id")},
-            inverseJoinColumns = {@JoinColumn(name = "movie_id")}
-    )
-    private Set<Movie> movies;
-
-
 }

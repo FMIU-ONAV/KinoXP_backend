@@ -33,11 +33,11 @@ public class Movie
 //    @JoinTable(name = "Movie_Showtime", joinColumns = @JoinColumn(name = "movie_id"), inverseJoinColumns =
 //    @JoinColumn(name = "showtime_id"))
 
-@ManyToMany(mappedBy = "movies")
-private Set<Showtime> showtimes;
-
-
-    @ManyToMany(mappedBy = "movies")
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "Movie_Category",
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories;
 
     @ManyToMany(mappedBy = "movies")

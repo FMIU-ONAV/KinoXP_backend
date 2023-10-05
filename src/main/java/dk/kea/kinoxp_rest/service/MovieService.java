@@ -7,6 +7,8 @@ import dk.kea.kinoxp_rest.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MovieService {
     private final MovieRepository movieRepository;
@@ -26,5 +28,10 @@ public class MovieService {
         Movie savedMovie = movieRepository.save(movieToSave);
 
         return movieConverter.toDTO(savedMovie);
+    }
+
+    public List<MovieDTO> getAllMovies(){
+        List<Movie> movies = movieRepository.findAll();
+        return movies.stream().map(movieConverter::toDTO).toList();
     }
 }
