@@ -69,7 +69,7 @@ public class JwtController {
         }
         final UserDetails userDetails = userDetailsService.loadUserByUsername(request.getUsername());
         final String jwtToken = jwtTokenManager.generateJwtToken(userDetails);
-        return ResponseEntity.ok(new JwtResponseModel(jwtToken + "Login successful"));
+        return ResponseEntity.ok(new JwtResponseModel(jwtToken));
     }
 
 
