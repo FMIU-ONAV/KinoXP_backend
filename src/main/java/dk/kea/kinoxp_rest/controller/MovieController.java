@@ -23,4 +23,11 @@ public class MovieController {
     public ResponseEntity getAllMovies(){
         return new ResponseEntity<>(movieService.getAllMovies(), HttpStatus.OK);
     }
+
+    @DeleteMapping("/movie/{id}")
+    public ResponseEntity <String> deleteMovie(@PathVariable("id") int id) {
+        movieService.deleteMovieById(id);
+        System.out.println("Movie deleted");
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }

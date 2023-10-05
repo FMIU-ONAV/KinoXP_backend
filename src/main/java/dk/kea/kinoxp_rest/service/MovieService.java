@@ -2,12 +2,14 @@ package dk.kea.kinoxp_rest.service;
 
 import dk.kea.kinoxp_rest.dto.MovieConverter;
 import dk.kea.kinoxp_rest.dto.MovieDTO;
+import dk.kea.kinoxp_rest.exception.MovieNotFoundException;
 import dk.kea.kinoxp_rest.model.Movie;
 import dk.kea.kinoxp_rest.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MovieService {
@@ -34,4 +36,14 @@ public class MovieService {
         List<Movie> movies = movieRepository.findAll();
         return movies.stream().map(movieConverter::toDTO).toList();
     }
+
+    public void deleteMovieById(int id) {
+        Optional<Movie> movie = movieRepository.findById(id);
+        if (movie.isPresent()) {
+            movieRepository.deleteById(id);
+        } else {
+            throw new MovieNotFoundException("Movie not found" + id);
+        }
+    }
+
 }
