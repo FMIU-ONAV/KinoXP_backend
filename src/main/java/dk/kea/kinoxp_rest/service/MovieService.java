@@ -37,6 +37,11 @@ public class MovieService {
         return movies.stream().map(movieConverter::toDTO).toList();
     }
 
+    public MovieDTO getMovieById(int id) {
+        Optional<Movie> optionalMovie = movieRepository.findById(id);
+        return optionalMovie.map(movieConverter::toDTO).orElse(null);
+    }
+
     public void deleteMovieById(int id) {
         Optional<Movie> movie = movieRepository.findById(id);
         if (movie.isPresent()) {

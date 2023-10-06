@@ -14,14 +14,24 @@ public class MovieController {
     MovieService movieService;
 
     @PostMapping("/movie")
-    public ResponseEntity<MovieDTO> postMovie(@RequestBody MovieDTO movieDTO){
+    public ResponseEntity<MovieDTO> postMovie(@RequestBody MovieDTO movieDTO) {
         MovieDTO createdMovie = movieService.createMovie(movieDTO);
         return new ResponseEntity<>(createdMovie, HttpStatus.CREATED);
     }
 
     @GetMapping("/movie")
-    public ResponseEntity getAllMovies(){
+    public ResponseEntity getAllMovies() {
         return new ResponseEntity<>(movieService.getAllMovies(), HttpStatus.OK);
+    }
+
+    @GetMapping("/movie/{id}")
+    public ResponseEntity<MovieDTO> getMovieById(@PathVariable int id) {
+        MovieDTO movie = movieService.getMovieById(id);
+        if (movie != null) {
+            return new ResponseEntity<>(movie, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @DeleteMapping("/movie/{id}")
