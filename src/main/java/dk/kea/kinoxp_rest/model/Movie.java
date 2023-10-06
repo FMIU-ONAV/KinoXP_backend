@@ -33,7 +33,7 @@ public class Movie
 //    @JoinTable(name = "Movie_Showtime", joinColumns = @JoinColumn(name = "movie_id"), inverseJoinColumns =
 //    @JoinColumn(name = "showtime_id"))
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "Movie_Category",
             joinColumns = @JoinColumn(name = "movie_id"),
