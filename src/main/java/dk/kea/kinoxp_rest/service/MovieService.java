@@ -50,5 +50,16 @@ public class MovieService {
             throw new MovieNotFoundException("Movie not found" + id);
         }
     }
+    public MovieDTO updateMovie(int id, MovieDTO movieDTO) {
+        Optional<Movie> optionalMovie = movieRepository.findById(movieDTO.id());
+        if (optionalMovie.isPresent()) {
+           Movie movieToUpdate = movieConverter.toEntity(movieDTO);
+           movieToUpdate.setMovie_ID(id);
+           movieRepository.save(movieToUpdate);
+           return movieConverter.toDTO(movieToUpdate);
+        } else {
+            throw new MovieNotFoundException("Movie not found" + movieDTO.id());
+        }
+    }
 
 }
