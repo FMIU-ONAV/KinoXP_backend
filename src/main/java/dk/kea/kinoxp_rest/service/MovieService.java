@@ -37,9 +37,19 @@ public class MovieService {
         return movies.stream().map(movieConverter::toDTO).toList();
     }
 
+    public List<MovieDTO> findAllMoviesFrom7DaysForward() {
+        List<Movie> movies = movieRepository.findAllMoviesFrom7DaysForward();
+        return movies.stream().map(movieConverter::toDTO).toList();
+    }
+
     public MovieDTO getMovieById(int id) {
         Optional<Movie> optionalMovie = movieRepository.findById(id);
         return optionalMovie.map(movieConverter::toDTO).orElse(null);
+    }
+
+    public Movie findById(int id) {
+        Optional<Movie> optionalMovie = movieRepository.findById(id);
+        return optionalMovie.orElse(null);
     }
 
     public void deleteMovieById(int id) {

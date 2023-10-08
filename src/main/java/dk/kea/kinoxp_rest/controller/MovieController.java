@@ -34,6 +34,11 @@ public class MovieController {
         }
     }
 
+    @GetMapping("/movie/current")
+    public ResponseEntity getCurrentMovies() {
+        return new ResponseEntity<>(movieService.findAllMoviesFrom7DaysForward(), HttpStatus.OK);
+    }
+
     @DeleteMapping("/movie/{id}")
     public ResponseEntity <String> deleteMovie(@PathVariable("id") int id) {
         movieService.deleteMovieById(id);
