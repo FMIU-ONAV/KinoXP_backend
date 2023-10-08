@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin
 public class CustomerController {
@@ -14,9 +16,18 @@ public class CustomerController {
     @Autowired
     CustomerService customerService;
 
+    @GetMapping("/customers")
+    public ResponseEntity<List<CustomerDTO>>getAllStudents(){
+        List<CustomerDTO> customersDTOList = customerService.getAllCustomers();
+        System.out.println(customersDTOList);
+        return new ResponseEntity<>(customersDTOList, HttpStatus.OK);
+    }
+
+
     @PostMapping("/customer")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<CustomerDTO> postCustomer(@RequestBody CustomerDTO customerDTO) {
+    public ResponseEntity<CustomerDTO> createCustomer(@RequestBody CustomerDTO customerDTO) {
+        System.out.println("Attempting to save customer: " + customerDTO);
         CustomerDTO createdCustomer = customerService.createCustomer(customerDTO);
         return new ResponseEntity<>(createdCustomer, HttpStatus.CREATED);
     }
