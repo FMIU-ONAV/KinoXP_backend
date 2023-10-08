@@ -25,10 +25,6 @@ public class Showtime
     @Column(name="show_time")
     private LocalTime time;
 
-    @ManyToMany
-    @JoinTable(
-            name="movie_showtime",
-            joinColumns=@JoinColumn(name="showtime_id"),
-            inverseJoinColumns=@JoinColumn(name="movie_id"))
+    @ManyToMany(mappedBy = "showtimes")
     private Set<Movie> movies;
 }

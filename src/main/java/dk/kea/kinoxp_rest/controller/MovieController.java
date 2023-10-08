@@ -34,10 +34,21 @@ public class MovieController {
         }
     }
 
+    @GetMapping("/movie/current")
+    public ResponseEntity getCurrentMovies() {
+        return new ResponseEntity<>(movieService.findAllMoviesFrom7DaysForward(), HttpStatus.OK);
+    }
+
     @DeleteMapping("/movie/{id}")
     public ResponseEntity <String> deleteMovie(@PathVariable("id") int id) {
         movieService.deleteMovieById(id);
         System.out.println("Movie deleted");
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PutMapping("/movie/{id}")
+    public ResponseEntity<MovieDTO> updateMovie(@PathVariable("id") int id, @RequestBody MovieDTO movieDTO) {
+        MovieDTO updatedMovie = movieService.updateMovie(id, movieDTO);
+        return new ResponseEntity<>(updatedMovie, HttpStatus.OK);
     }
 }
