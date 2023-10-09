@@ -6,6 +6,8 @@ import dk.kea.kinoxp_rest.repository.ShowtimeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class ShowtimeService {
     private final ShowtimeRepository showtimeRepository;
@@ -18,14 +20,22 @@ public class ShowtimeService {
     }
 
     public Showtime createShowtime(Showtime showtime, Movie movie){
-        // Save the movie
+        // Add the showtime to the movie
+        Optional optionalShowtime = showtimeRepository.findDateAndTime(showtime.getDate(), showtime.getTime());
+        Showtime showtimeToSave = (Showtime) optionalShowtime.orElse(null);
+
+        if (optionalShowtime.isPresent()){
+            movie.getShowtimes().add(showtimeToSave);
+        } else {
+            movie.getShowtimes().add(showtime);
+            showtimeRepository.save(showtime);
+        }
+
+        // Save the movie after establishing the association
         movieRepository.save(movie);
 
-        // Add the showtime to the movie
-        movie.getShowtimes().add(showtime);
-
-        // Save the showtime
-        return showtimeRepository.save(showtime);
+        return showtime;
     }
+
 
 }

@@ -1,5 +1,6 @@
 package dk.kea.kinoxp_rest.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 import dk.kea.kinoxp_rest.model.Showtime;
@@ -51,6 +52,7 @@ public class Movie
             name="movie_showtime",
             joinColumns=@JoinColumn(name="movie_id"),
             inverseJoinColumns=@JoinColumn(name="showtime_id"))
+    @JsonBackReference
     private Set<Showtime> showtimes;
 
     public Movie(int id, String title, String director, String description, String imgRef, int ageLimit, int duration, Set<Category> categories) {
