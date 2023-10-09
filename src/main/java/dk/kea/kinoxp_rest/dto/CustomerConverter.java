@@ -12,7 +12,7 @@ public class CustomerConverter {
         Customer customer = new Customer();
         customer.setCustomer_ID(customerDTO.customer_ID());
         customer.setFirst_Name(customerDTO.first_Name());
-        customer.setLast_Name(customerDTO.last_name());
+        customer.setLast_Name(customerDTO.last_Name());
         customer.setBirthday(customerDTO.birthday());
         customer.setEmail(customerDTO.email());
 
