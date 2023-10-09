@@ -1,4 +1,5 @@
 package dk.kea.kinoxp_rest.service;
+import dk.kea.kinoxp_rest.exception.ShowtimesNotFoundException;
 import dk.kea.kinoxp_rest.model.Movie;
 import dk.kea.kinoxp_rest.model.Showtime;
 import dk.kea.kinoxp_rest.repository.MovieRepository;
@@ -6,6 +7,7 @@ import dk.kea.kinoxp_rest.repository.ShowtimeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -36,6 +38,11 @@ public class ShowtimeService {
 
         return showtime;
     }
+
+    public List<Showtime> findAllByMovieID(int movieId) {
+        return showtimeRepository.findShowtimesByMovieId(movieId);
+    }
+
 
 
 }
