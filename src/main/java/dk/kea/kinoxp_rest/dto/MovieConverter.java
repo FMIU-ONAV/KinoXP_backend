@@ -19,6 +19,7 @@ public class MovieConverter {
         movie.setDirector(movieDTO.director());
         movie.setDescription(movieDTO.description());
         movie.setImgRef(movieDTO.imgRef());
+        movie.setBackdropRef(movieDTO.backdropRef());
         movie.setAgeLimit(movieDTO.ageLimit());
         movie.setDuration(movieDTO.duration());
         Set<Category> categories = movieDTO.categories().stream()
@@ -38,6 +39,7 @@ public class MovieConverter {
                 movie.getDirector(),
                 movie.getDescription(),
                 movie.getImgRef(),
+                movie.getBackdropRef(),
                 movie.getAgeLimit(),
                 movie.getDuration(),
                 movie.getCategories()

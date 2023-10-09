@@ -26,6 +26,7 @@ public class Movie
     private String description;
     @Column(name="img_ref")
     private String imgRef;
+    private String backdropRef;
     private int ageLimit;
 
     @ManyToMany(cascade = CascadeType.PERSIST)
