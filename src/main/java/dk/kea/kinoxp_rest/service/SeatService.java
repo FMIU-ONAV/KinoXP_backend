@@ -49,6 +49,7 @@ public class SeatService {
           //  SeatDTO reserveseat = seatConverter.toDTO(seat);
             Seat seatToSave = seatConverter.toEntity(seat);
             saveSeats.add(seatToSave);
+            seatRepository.save(seatToSave);
         }
 
         System.out.println(saveSeats);

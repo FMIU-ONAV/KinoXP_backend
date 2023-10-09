@@ -41,7 +41,8 @@ public class SecurityConfiguration implements WebMvcConfigurer {
                         .requestMatchers(new AntPathRequestMatcher("/movie/**", HttpMethod.GET.name())).permitAll()  // Allow only GET requests to /movie
                         .requestMatchers(new AntPathRequestMatcher("/category/**", HttpMethod.GET.name())).permitAll()  // Allow only GET requests to /movie
                         .requestMatchers(new AntPathRequestMatcher("/login")).permitAll()  // Allow all requests to /login
-                        .requestMatchers(new AntPathRequestMatcher("/signup")).permitAll()  // Allow all requests to /signup
+                        .requestMatchers(new AntPathRequestMatcher("/signup")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/seats")).permitAll() // Allow all requests to /signup
                         .anyRequest().authenticated()
                 )
                 .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint)
