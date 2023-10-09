@@ -1,11 +1,11 @@
 package dk.kea.kinoxp_rest.service;
-import dk.kea.kinoxp_rest.dto.MovieDTO;
 import dk.kea.kinoxp_rest.dto.SeatConverter;
 import dk.kea.kinoxp_rest.dto.SeatDTO;
+import dk.kea.kinoxp_rest.dto.TheaterConverter;
 import dk.kea.kinoxp_rest.exception.SeatNotFoundException;
-import dk.kea.kinoxp_rest.model.Movie;
 import dk.kea.kinoxp_rest.model.Seat;
 import dk.kea.kinoxp_rest.repository.SeatRepository;
+import dk.kea.kinoxp_rest.repository.TheaterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,27 +20,39 @@ public class SeatService {
     @Autowired
     private final SeatRepository seatRepository;
 
+    @Autowired
+    private final TheaterRepository theaterRepository;
 
     @Autowired
     private final SeatConverter seatConverter;
 
+    @Autowired
+    private final TheaterConverter theaterConverter;
 
-    public SeatService(SeatRepository seatRepository, SeatConverter seatConverter){
+    public SeatService(SeatRepository seatRepository, TheaterRepository theaterRepository, SeatConverter seatConverter, TheaterConverter theaterConverter){
         this.seatRepository = seatRepository;
+        this.theaterRepository = theaterRepository;
         this.seatConverter = seatConverter;
+        this.theaterConverter = theaterConverter;
     }
-    public List<SeatDTO> reserveSeat(List<String> seatNumbers) {
-        List<SeatDTO> reservedSeats = new ArrayList<>();
-        for (String seatNumber : seatNumbers) {
-            Seat set = new Seat();
-            set.setSeat_number(seatNumber);
-            set.setReserved(true);
+    public List<SeatDTO> reserveSeat(List<SeatDTO> seats) {
+        List<Seat> saveSeats = new ArrayList<>();
 
-            SeatDTO reserveseat = seatConverter.toDTO(set);
-            reservedSeats.add(reserveseat);
+        for (SeatDTO seat : seats) {
+          /*  Seat set = new Seat();
+            set.setSeat_number(seat.seat_number());
+            set.setReserved(true);
+            set.setTheater(theaterRepository.findById(set.getTheater_ID()));
+
+           */
+
+          //  SeatDTO reserveseat = seatConverter.toDTO(seat);
+            Seat seatToSave = seatConverter.toEntity(seat);
+            saveSeats.add(seatToSave);
         }
-        System.out.println(reservedSeats);
-        return reservedSeats;
+
+        System.out.println(saveSeats);
+        return saveSeats.stream().map(seatConverter::toDTO).collect(Collectors.toList());
     }
 
 

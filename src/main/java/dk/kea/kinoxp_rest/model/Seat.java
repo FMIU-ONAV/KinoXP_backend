@@ -13,10 +13,9 @@ public class Seat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int seat_ID;
-
     private String seat_number;
     private boolean isReserved;
-    private int theater_ID;
+    //private int theater_ID;
 
 
     @OneToOne (cascade = CascadeType.ALL, mappedBy = "seat")

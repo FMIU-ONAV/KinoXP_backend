@@ -22,7 +22,7 @@ public class Theater
     private int total_Seat_Per_Row;
 
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "theater")
-    private List<Seat> seats;
+    //@OneToMany(cascade = CascadeType.ALL, mappedBy = "theater")
+  //  private List<Seat> seats;
 
 }

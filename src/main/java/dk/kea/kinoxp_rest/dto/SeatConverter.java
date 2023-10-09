@@ -10,7 +10,7 @@ public class SeatConverter {
         seat.setSeat_ID(seatDTO.seat_ID());
         seat.setSeat_number(seatDTO.seat_number());
         seat.setReserved(seatDTO.isReserved());
-        seat.setTheater_ID(seatDTO.theater_ID());
+        seat.setTheater(seatDTO.theater());
         return seat;
     }
 
@@ -24,6 +24,6 @@ public class SeatConverter {
                 seat.getSeat_ID(),
                 seat.getSeat_number(),
                         seat.isReserved(),
-                        seat.getTheater_ID());
+                        seat.getTheater());
     }
 }
