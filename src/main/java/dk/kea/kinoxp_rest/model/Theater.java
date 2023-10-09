@@ -16,12 +16,13 @@ public class Theater
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private int theater_ID;
     private int total_rows;
     private int total_Seat_Per_Row;
 
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "theater")
-    private List<Seat> seats;
+    //@OneToMany(cascade = CascadeType.ALL, mappedBy = "theater")
+  //  private List<Seat> seats;
 
 }
