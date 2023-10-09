@@ -26,12 +26,8 @@ public class Movie
     private String description;
     @Column(name="img_ref")
     private String imgRef;
+    private String backdropRef;
     private int ageLimit;
-
-
-//    @ManyToMany
-//    @JoinTable(name = "Movie_Showtime", joinColumns = @JoinColumn(name = "movie_id"), inverseJoinColumns =
-//    @JoinColumn(name = "showtime_id"))
 
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
@@ -49,6 +45,13 @@ public class Movie
 
     @OneToOne(mappedBy = "movie", cascade = CascadeType.ALL)
     private Statistic statistic;
+
+    @ManyToMany
+    @JoinTable(
+            name="movie_showtime",
+            joinColumns=@JoinColumn(name="movie_id"),
+            inverseJoinColumns=@JoinColumn(name="showtime_id"))
+    private Set<Showtime> showtimes;
 
     public Movie(int id, String title, String director, String description, String imgRef, int ageLimit, int duration, Set<Category> categories) {
         this.movie_ID = id;
