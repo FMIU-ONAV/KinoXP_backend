@@ -14,7 +14,7 @@ public class Rating
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int rating_ID;
-    private int numeric_rating;
+    private int rating_value;
 
     @ManyToOne
     @JoinColumn(name = "movie_idfk")
