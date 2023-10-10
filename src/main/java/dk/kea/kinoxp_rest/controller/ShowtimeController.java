@@ -27,4 +27,9 @@ public class ShowtimeController {
 
         return new ResponseEntity<>(createdShowtime, HttpStatus.CREATED);
     }
+
+    @GetMapping("/showtime/{movieId}")
+    public ResponseEntity getAllShowtimesByMovieId(@PathVariable int movieId) {
+        return new ResponseEntity<>(showtimeService.findAllByMovieID(movieId), HttpStatus.OK);
+    }
 }
