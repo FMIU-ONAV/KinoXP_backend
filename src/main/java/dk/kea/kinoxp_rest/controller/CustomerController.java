@@ -17,12 +17,11 @@ public class CustomerController {
     CustomerService customerService;
 
     @GetMapping("/customers")
-    public ResponseEntity<List<CustomerDTO>>getAllStudents(){
+    public ResponseEntity<List<CustomerDTO>> getAllCustomer(){
         List<CustomerDTO> customersDTOList = customerService.getAllCustomers();
         System.out.println(customersDTOList);
         return new ResponseEntity<>(customersDTOList, HttpStatus.OK);
     }
-
 
     @PostMapping("/customer")
     @ResponseStatus(HttpStatus.CREATED)

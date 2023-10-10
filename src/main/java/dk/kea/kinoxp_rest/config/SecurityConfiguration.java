@@ -33,7 +33,6 @@ public class SecurityConfiguration implements WebMvcConfigurer {
         return passwordEncoder;
     }
 
-
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
@@ -56,11 +55,6 @@ public class SecurityConfiguration implements WebMvcConfigurer {
         http.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
-
-
-
-
-
 
 
     @Bean
