@@ -32,7 +32,7 @@ public class ShowtimeService {
         }
 
         // Save the movie after establishing the association
-        movieRepository.save(movie);
+        movieRepository.save(movie); //vent bliver filmen så gemt flere gange?
 
         return showtime;
     }

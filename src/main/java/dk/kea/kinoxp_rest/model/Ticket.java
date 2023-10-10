@@ -32,5 +32,8 @@ public class Ticket
    // @JsonBackReference
     private Seat seat;
 
+    @OneToOne(mappedBy = "ticket")
+    private Rating rating;
+
 
 }
