@@ -78,6 +78,8 @@ public class SecurityConfiguration implements WebMvcConfigurer {
         registry.addMapping("/**")  // /** means match any string recursively
                 .allowedOriginPatterns("http://localhost:*/", "http://127.0.0.1:*/", "http://kinoxpkea.azurewebsites.net*") //Multiple strings allowed. Wildcard * matches all port numbers.
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS") // decide which methods to allow
+                // Allow preflight checks to return successful
+                .allowedHeaders("*")
                 .allowCredentials(true);
     }
 
