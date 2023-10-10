@@ -65,7 +65,6 @@ public class SecurityConfiguration implements WebMvcConfigurer {
 
 
 
-
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
             throws Exception {
