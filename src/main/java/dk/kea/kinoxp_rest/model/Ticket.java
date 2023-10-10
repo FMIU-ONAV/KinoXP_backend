@@ -10,14 +10,11 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Ticket
+public class Ticket //slettet dobbelt values
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ticket_ID;
-    private int customer_ID;
-    private int movie_ID;
-    private int seat_ID;
 
     @ManyToOne
     @JoinColumn(name = "customer_idfk")
