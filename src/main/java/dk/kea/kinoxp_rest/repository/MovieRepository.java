@@ -15,4 +15,8 @@ public interface MovieRepository extends JpaRepository<Movie, Integer> {
             "WHERE s.date BETWEEN CURRENT_DATE AND CURRENT_DATE + 7")
     List<Movie> findAllMoviesFrom7DaysForward();
 
+    @Query("SELECT DISTINCT m FROM Movie m " +
+            "LEFT JOIN m.showtimes s " +
+            "WHERE s.date >= CURRENT_DATE + 8 AND s.date <= CURRENT_DATE + 90")
+    List<Movie> findMoviesShowingAfter7Days();
 }

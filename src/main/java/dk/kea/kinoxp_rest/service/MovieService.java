@@ -42,6 +42,12 @@ public class MovieService {
         return movies.stream().map(movieConverter::toDTO).toList();
     }
 
+    public List<MovieDTO> findMoviesShowingAfter7Days() {
+        List<Movie> movies = movieRepository.findMoviesShowingAfter7Days();
+        return movies.stream().map(movieConverter::toDTO).toList();
+    }
+
+
     public MovieDTO getMovieById(int id) {
         Optional<Movie> optionalMovie = movieRepository.findById(id);
         return optionalMovie.map(movieConverter::toDTO).orElse(null);
