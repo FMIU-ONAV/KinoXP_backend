@@ -22,7 +22,11 @@ public class RatingController
     TicketService ticketService;
 
     @PostMapping("/rating")
-    public ResponseEntity<?> postRating(@RequestBody Rating rating) {
+    public ResponseEntity<Rating> postRating(@RequestBody Rating rating) {
+        System.out.println(rating.getRating_value());
+        System.out.println(rating.getMovie());
+        System.out.println(rating.getTicket());
+
         // Check if the ticket with the given ID exists
         Ticket ticket = ticketService.findById(rating.getTicket().getTicket_ID());
 
@@ -32,7 +36,7 @@ public class RatingController
             return new ResponseEntity<>(createdRating, HttpStatus.CREATED);
         } else {
             // Ticket doesn't exist, return an error response
-            return new ResponseEntity<>("Ticket not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(rating, HttpStatus.NOT_FOUND);
         }
 
     }
