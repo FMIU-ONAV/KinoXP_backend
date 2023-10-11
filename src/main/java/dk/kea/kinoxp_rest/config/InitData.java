@@ -2,9 +2,11 @@ package dk.kea.kinoxp_rest.config;
 
 import dk.kea.kinoxp_rest.model.Category;
 import dk.kea.kinoxp_rest.model.Role;
+import dk.kea.kinoxp_rest.model.Theater;
 import dk.kea.kinoxp_rest.model.User;
 import dk.kea.kinoxp_rest.repository.CategoryRepository;
 import dk.kea.kinoxp_rest.repository.RoleRepository;
+import dk.kea.kinoxp_rest.repository.TheaterRepository;
 import dk.kea.kinoxp_rest.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -27,6 +29,9 @@ public class InitData implements CommandLineRunner
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    TheaterRepository theaterRepository;
 
 
     @Override
@@ -159,5 +164,18 @@ public class InitData implements CommandLineRunner
         category19.setName("Western");
         category19.setCategory_ID(37);
         categoryRepository.save(category19);
+
+        Theater theater1 = new Theater();
+        theater1.setTheater_ID(1);
+        theater1.setTotal_rows(20);
+        theater1.setTotal_Seat_Per_Row(12);
+        theaterRepository.save(theater1);
+
+        Theater theater2 = new Theater();
+        theater2.setTheater_ID(2);
+        theater2.setTotal_rows(25);
+        theater2.setTotal_Seat_Per_Row(16);
+        theaterRepository.save(theater2);
+
     }
 }

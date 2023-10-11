@@ -45,11 +45,7 @@ public class Movie
     @OneToOne(mappedBy = "movie", cascade = CascadeType.ALL)
     private Statistic statistic;
 
-    @ManyToMany
-    @JoinTable(
-            name="movie_showtime",
-            joinColumns=@JoinColumn(name="movie_id"),
-            inverseJoinColumns=@JoinColumn(name="showtime_id"))
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
     @JsonBackReference
     private Set<Showtime> showtimes;
 
