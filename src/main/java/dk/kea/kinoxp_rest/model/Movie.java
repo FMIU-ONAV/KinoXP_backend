@@ -3,9 +3,7 @@ package dk.kea.kinoxp_rest.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
-import dk.kea.kinoxp_rest.model.Showtime;
 
-import java.time.LocalTime;
 import java.util.List;
 import java.util.Set;
 
@@ -38,7 +36,7 @@ public class Movie
     private Set<Category> categories;
 
     @ManyToMany(mappedBy = "movies")
-    private Set<Employee> employees;
+    private Set<User> users;
 
 
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)

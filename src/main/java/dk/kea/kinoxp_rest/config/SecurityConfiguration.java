@@ -68,7 +68,6 @@ public class SecurityConfiguration implements WebMvcConfigurer {
 
 
 
-
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
             throws Exception {
@@ -79,7 +78,7 @@ public class SecurityConfiguration implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         System.out.println("addCorsMappings called");
         registry.addMapping("/**")  // /** means match any string recursively
-                .allowedOriginPatterns("http://localhost:*/", "http://127.0.0.1:*/", "http://kinoxpkea.azurewebsites.net*") //Multiple strings allowed. Wildcard * matches all port numbers.
+                .allowedOriginPatterns("http://localhost:*/", "http://127.0.0.1:*/", "http://kinoxpkea.azurewebsites.net*", "https://delightful-pond-0c24f3603.3.azurestaticapps.net*") //Multiple strings allowed. Wildcard * matches all port numbers.
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS") // decide which methods to allow
                 // Allow preflight checks to return successful
                 .allowedHeaders("*")
