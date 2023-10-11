@@ -32,5 +32,9 @@ public class Ticket //slettet dobbelt values
     @OneToOne(mappedBy = "ticket")
     private Rating rating;
 
+    @ManyToOne
+    @JoinColumn(name = "showtime_idfk")
+    private Showtime showtime;
+
 
 }

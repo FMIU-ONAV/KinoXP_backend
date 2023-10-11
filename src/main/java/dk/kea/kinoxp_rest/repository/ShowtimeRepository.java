@@ -15,11 +15,15 @@ import java.util.Optional;
 @Repository
 public interface ShowtimeRepository extends JpaRepository<Showtime, Integer> {
 
-    @Query("SELECT s FROM Showtime s WHERE s.date = :date AND s.time = :time")
-    Optional<Showtime> findDateAndTime(LocalDate date, LocalTime time);
+    @Query("SELECT s FROM Showtime s WHERE s.date = :date AND s.time = :time AND s.theater.theater_ID = :theaterId")
+    Optional<Showtime> findDateAndTime(LocalDate date, LocalTime time, int theaterId);
 
-    @Query("SELECT s FROM Showtime s JOIN s.movies m WHERE m.movie_ID = :movieId")
+
+    @Query("SELECT s FROM Showtime s WHERE s.movie.movie_ID = :movieId")
     List<Showtime> findShowtimesByMovieId(@Param("movieId") int movieId);
+
+    @Query("SELECT s FROM Showtime s WHERE s.movie.movie_ID = :movieId AND s.date = :date AND s.time = :time")
+    Showtime findByMovieIDAndDateAndTime(int movieId, LocalDate date, LocalTime time);
 
 
 
