@@ -28,7 +28,5 @@ public class Showtime {
     @ManyToMany(mappedBy = "showtimes")
     private Set<Movie> movies;
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-    private List<Ticket> tickets;
 
 }
