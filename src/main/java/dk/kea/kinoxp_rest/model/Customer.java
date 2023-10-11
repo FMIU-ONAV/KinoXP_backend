@@ -1,5 +1,6 @@
 package dk.kea.kinoxp_rest.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,6 +23,7 @@ public class Customer {
     private String email;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    @JsonBackReference("customerTicket")
     private List<Ticket> tickets;
 
 }
