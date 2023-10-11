@@ -1,5 +1,6 @@
 package dk.kea.kinoxp_rest.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,12 +22,11 @@ public class Seat {
 
     @ManyToOne
     @JoinColumn(name = "theater_idfk")
-    @JsonBackReference
     private Theater theater;
 
     @ManyToOne
     @JoinColumn(name = "showtime_idfk")
-    @JsonBackReference
+    @JsonIgnore
     private Showtime showtime;
 
 

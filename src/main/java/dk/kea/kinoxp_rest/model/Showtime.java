@@ -14,16 +14,15 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class Showtime {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int showtime_ID;
 
-    @Column(name="show_date")
+    @Column(name = "show_date")
     private LocalDate date;
 
-    @Column(name="show_time")
+    @Column(name = "show_time")
     private LocalTime time;
 
     @ManyToOne
@@ -32,7 +31,21 @@ public class Showtime {
 
     @ManyToOne
     @JoinColumn(name = "theater_idfk")
-    @JsonBackReference
     private Theater theater;
+
+    @OneToMany(mappedBy = "showtime", cascade = CascadeType.ALL)
+    private List<Seat> seats;
+
+    @Override
+    public String toString() {
+        return "Showtime{" +
+                "showtime_ID=" + showtime_ID +
+                ", date=" + date +
+                ", time=" + time +
+                ", movie=" + (movie != null ? movie.getTitle() : null) +
+                ", theater=" + (theater != null ? theater.getTheater_ID() : null) +
+                '}';
+    }
 }
+
 
