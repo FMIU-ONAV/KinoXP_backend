@@ -25,4 +25,10 @@ public class Theater
     //@OneToMany(cascade = CascadeType.ALL, mappedBy = "theater")
   //  private List<Seat> seats;
 
+
+   /* @OneToMany(mappedBy = "seat", cascade = CascadeType.ALL)
+    private List<Showtime> showtime;*/
+
+
+
 }

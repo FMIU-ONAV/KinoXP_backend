@@ -1,5 +1,4 @@
 package dk.kea.kinoxp_rest.config;
-
 import dk.kea.kinoxp_rest.JwtAuthenticationEntryPoint;
 import dk.kea.kinoxp_rest.JwtFilter;
 import lombok.AllArgsConstructor;
@@ -10,6 +9,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -42,13 +42,18 @@ public class SecurityConfiguration implements WebMvcConfigurer {
                         .requestMatchers(new AntPathRequestMatcher("/category/**", HttpMethod.GET.name())).permitAll()  // Allow only GET requests to /movie
                         .requestMatchers(new AntPathRequestMatcher("/login")).permitAll()  // Allow all requests to /login
                         .requestMatchers(new AntPathRequestMatcher("/signup")).permitAll()  // Allow all requests to /signup
-                        .requestMatchers(new AntPathRequestMatcher("/seat")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/seats")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/customer")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/showtime")).permitAll()  // Allow all requests to /signup
                         .requestMatchers(new AntPathRequestMatcher("/update-showtime")).permitAll()  // Allow all requests to /signup
                         .requestMatchers(new AntPathRequestMatcher("/showtime/**")).permitAll()  // Allow all requests to /signup
                         .requestMatchers(new AntPathRequestMatcher("/rating")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/update-showtime/*")).permitAll()  // Allow all requests to /signup
+
+                        .requestMatchers(new AntPathRequestMatcher("/seat")).permitAll()
+
+       .requestMatchers(new AntPathRequestMatcher("/**", HttpMethod.OPTIONS.name())).permitAll()
+
                         .anyRequest().authenticated()
                 )
                 .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint)
@@ -74,9 +79,12 @@ public class SecurityConfiguration implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         System.out.println("addCorsMappings called");
         registry.addMapping("/**")  // /** means match any string recursively
-                .allowedOriginPatterns("http://localhost:*/", "http://127.0.0.1:*/") //Multiple strings allowed. Wildcard * matches all port numbers.
+                .allowedOriginPatterns("http://localhost:*/", "http://127.0.0.1:*/", "http://kinoxpkea.azurewebsites.net*", "https://delightful-pond-0c24f3603.3.azurestaticapps.net*") //Multiple strings allowed. Wildcard * matches all port numbers.
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS") // decide which methods to allow
+                // Allow preflight checks to return successful
+                .allowedHeaders("*")
                 .allowCredentials(true);
     }
+
 
 }

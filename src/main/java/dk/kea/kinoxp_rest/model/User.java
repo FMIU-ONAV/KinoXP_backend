@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -19,20 +21,21 @@ public class User {
     private Long id;
     private String username;
     private String password;
-
-    @Column(name = "local_time", columnDefinition = "TIME")
-    private LocalTime localTime = LocalTime.of(6,43,12);
+    private String first_Name;
+    private String last_Name;
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private Role role;
+    @ManyToMany
+    @JoinTable(
+            name = "movie_User",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "movie_id")}
+    )
+    private Set<Movie> movies;
 
     public User(String username, String password) {
         this.username=username;
         this.password=password;
-    }
-
-    public LocalTime getLocalTime() {
-        return localTime;
-    }
-
-    public void setLocalTime(LocalTime localTime) {
-        this.localTime = localTime;
     }
 }
