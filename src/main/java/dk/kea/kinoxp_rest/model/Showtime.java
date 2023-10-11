@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -13,8 +14,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Showtime
-{
+public class Showtime {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int showtime_ID;
@@ -27,4 +27,8 @@ public class Showtime
 
     @ManyToMany(mappedBy = "showtimes")
     private Set<Movie> movies;
+
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    private List<Ticket> tickets;
+
 }
