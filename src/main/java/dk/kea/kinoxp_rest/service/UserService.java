@@ -1,9 +1,11 @@
 package dk.kea.kinoxp_rest.service;
 
 import dk.kea.kinoxp_rest.config.SecurityConfiguration;
+import dk.kea.kinoxp_rest.model.Role;
 import dk.kea.kinoxp_rest.model.User;
 import dk.kea.kinoxp_rest.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -16,12 +18,12 @@ import java.util.Set;
 @Service
 public class UserService implements IUserService{
 
+    @Autowired
     private UserRepository userRepository;
+
     @Override
     public Set<User> findAll() {
-        Set<User> set = new HashSet<>();
-        userRepository.findAll().forEach(set::add);
-        return set;
+        return new HashSet<>(userRepository.findAll());
     }
 
     @Override
