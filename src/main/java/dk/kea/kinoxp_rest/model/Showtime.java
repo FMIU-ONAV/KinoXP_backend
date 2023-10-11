@@ -1,5 +1,6 @@
 package dk.kea.kinoxp_rest.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -25,8 +26,13 @@ public class Showtime {
     @Column(name="show_time")
     private LocalTime time;
 
-    @ManyToMany(mappedBy = "showtimes")
-    private Set<Movie> movies;
+    @ManyToOne
+    @JoinColumn(name = "movie_idfk")
+    private Movie movie;
 
-
+    @ManyToOne
+    @JoinColumn(name = "theater_idfk")
+    @JsonBackReference
+    private Theater theater;
 }
+
