@@ -1,4 +1,4 @@
-package dk.kea.kinoxp_rest.service;
+package dk.kea.kinoxp_rest.exception;
 
 public class CustomerNotFoundException extends RuntimeException {
     public CustomerNotFoundException(String message) {

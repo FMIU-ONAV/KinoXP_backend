@@ -57,6 +57,10 @@ public class ShowtimeService {
         return optionalShowtime.orElseThrow(() -> new ShowtimesNotFoundException("Showtime not found with id " + movieId + " and date " + date + " and time " + time));
     }
 
+    public Showtime findById(int showtimeID){
+        Optional<Showtime> optionalShowtime = showtimeRepository.findById(showtimeID);
+        return optionalShowtime.orElse(null);
+    }
 
 
 }

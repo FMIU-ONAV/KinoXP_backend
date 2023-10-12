@@ -44,4 +44,10 @@ public class ShowtimeController {
     public ResponseEntity getShowtimeByMovieIdAndDateAndTime(@PathVariable int movieId, @RequestParam LocalDate date, @RequestParam LocalTime time) {
         return new ResponseEntity<>(showtimeService.findByMovieIDAndDateAndTime(movieId, date, time), HttpStatus.OK);
     }
+
+    @GetMapping("/showtime/id/{showtimeID}")
+    public ResponseEntity<Showtime> getShowtimeById(@PathVariable int showtimeID){
+        Showtime showtime = showtimeService.findById(showtimeID);
+        return ResponseEntity.ok(showtime);
+    }
 }
