@@ -35,8 +35,9 @@ class SeatConverterTest {
             1,
             "A1",
             true,
-            null,
-            10.5
+            null, // assuming a null Theater for simplicity
+            10.5,
+            null
     );
 
     Seat seatTest = new Seat(
