@@ -20,11 +20,16 @@ public class SnackController {
 
     @PostMapping("/snacks")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<List<SnackDTO>> reserveSeats(@RequestBody List<SnackDTO> snackDTOS) {
-        List<SnackDTO> snackmenu = snackService.saveSnack(snackDTOS);
-        System.out.println(snackDTOS);
-        System.out.println(snackmenu);
-        return new ResponseEntity<>(snackmenu, HttpStatus.OK);
+    public ResponseEntity<SnackDTO> saveSnacks(@RequestBody SnackDTO snackDTO) {
+        SnackDTO snack = snackService.saveSnack(snackDTO);
+        System.out.println(snackDTO);
+        return new ResponseEntity<>(snack, HttpStatus.OK);
+    }
+
+    @PutMapping("/snacks/{id}")
+    public ResponseEntity<SnackDTO> updateSnack(@PathVariable("id") int id, @RequestBody SnackDTO snackDTO) {
+        SnackDTO snack = snackService.updateSnack(id, snackDTO);
+        return new ResponseEntity<>(snack, HttpStatus.OK);
     }
 
 }
