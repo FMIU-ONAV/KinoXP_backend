@@ -51,6 +51,7 @@ public class SeatService {
         return seatConverter.toDTO(savedSeat);
     }
 
+
   /*  public SeatDTO reserveSeat(SeatDTO seatDTO){
         Seat seatToSave = seatConverter.toEntity(seatDTO);
         // ensure its a create

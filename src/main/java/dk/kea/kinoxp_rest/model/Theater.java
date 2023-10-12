@@ -17,6 +17,7 @@ public class Theater
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private int theater_ID;
     private int total_rows;
     private int total_Seat_Per_Row;
@@ -29,4 +30,5 @@ public class Theater
     @JsonBackReference("theaterSeat")
     private List<Seat> seats;
 }
+
 

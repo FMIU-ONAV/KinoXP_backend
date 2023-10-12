@@ -29,5 +29,9 @@ public class Seat {
     @JsonIgnore
     private Showtime showtime;
 
+   /* @ManyToOne
+    @JoinColumn(name = "showtime_idfk")
+    private Showtime showtime;*/
+
 
 }

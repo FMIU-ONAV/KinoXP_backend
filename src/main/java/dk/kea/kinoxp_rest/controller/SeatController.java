@@ -1,8 +1,6 @@
 package dk.kea.kinoxp_rest.controller;
 
-import dk.kea.kinoxp_rest.dto.MovieDTO;
 import dk.kea.kinoxp_rest.dto.SeatDTO;
-import dk.kea.kinoxp_rest.model.Seat;
 import dk.kea.kinoxp_rest.service.SeatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,12 +18,13 @@ public class SeatController {
 
 
     @GetMapping("/seat")
-    public ResponseEntity<List<SeatDTO> > getAllBySeatsID(){
+    public ResponseEntity<List<SeatDTO> > getAllSeatsByID(){
         List<SeatDTO> allSeatID = seatService.getAllSeatID();
         System.out.println(allSeatID);
         System.out.println(seatService.getAllSeatID());
         return new ResponseEntity<>(allSeatID, HttpStatus.OK);
     }
+
 
     @PostMapping("/seats")
     @ResponseStatus(HttpStatus.CREATED)

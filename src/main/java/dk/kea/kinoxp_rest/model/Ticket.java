@@ -36,5 +36,10 @@ public class Ticket //slettet dobbelt values
     @JoinColumn(name = "showtime_idfk")
     private Showtime showtime;
 
+    @OneToOne
+    @JoinColumn(name = "snack_idfk", referencedColumnName = "snack_id", nullable = false)
+    // @JsonBackReference
+    private Snack snack;
+
 
 }

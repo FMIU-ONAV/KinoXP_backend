@@ -1,9 +1,6 @@
 package dk.kea.kinoxp_rest.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -12,11 +9,17 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Snack
-{
+public class Snack {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int snack_ID;
-    private Enum snackType;
+    private SnackType snackType;
+    private int price;
     private int ticket_ID;
+
+
+
+ /*   @OneToOne(cascade = CascadeType.ALL, mappedBy = "snack")
+    private Ticket ticket;*/
 }
+
