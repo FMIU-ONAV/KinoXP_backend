@@ -39,6 +39,11 @@ public class MovieController {
         return new ResponseEntity<>(movieService.findAllMoviesFrom7DaysForward(), HttpStatus.OK);
     }
 
+    @GetMapping("/movie/upcoming")
+    public ResponseEntity getUpcomingMovies() {
+        return new ResponseEntity<>(movieService.findMoviesShowingAfter7Days(), HttpStatus.OK);
+    }
+
     @DeleteMapping("/movie/{id}")
     public ResponseEntity <String> deleteMovie(@PathVariable("id") int id) {
         movieService.deleteMovieById(id);

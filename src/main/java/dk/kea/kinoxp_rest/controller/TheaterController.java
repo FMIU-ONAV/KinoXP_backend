@@ -32,8 +32,7 @@ public class TheaterController {
     @GetMapping("/theater/{id}")
     public ResponseEntity<TheaterDTO> getTheaterByID(@PathVariable("id") int id){
         TheaterDTO theaterDTO = theaterService.getTheater(id);
-        System.out.println(theaterDTO);
-        System.out.println(theaterService.getTheater(id));
         return ResponseEntity.ok(theaterDTO);
     }
+
 }

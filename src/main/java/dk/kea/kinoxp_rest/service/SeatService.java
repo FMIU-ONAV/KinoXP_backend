@@ -5,6 +5,7 @@ import dk.kea.kinoxp_rest.dto.TheaterConverter;
 import dk.kea.kinoxp_rest.exception.SeatNotFoundException;
 import dk.kea.kinoxp_rest.model.Seat;
 import dk.kea.kinoxp_rest.repository.SeatRepository;
+import dk.kea.kinoxp_rest.repository.ShowtimeRepository;
 import dk.kea.kinoxp_rest.repository.TheaterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,33 +30,26 @@ public class SeatService {
     @Autowired
     private final TheaterConverter theaterConverter;
 
-    public SeatService(SeatRepository seatRepository, TheaterRepository theaterRepository, SeatConverter seatConverter, TheaterConverter theaterConverter){
+    @Autowired
+    private final ShowtimeRepository showtimeRepository;
+
+    public SeatService(SeatRepository seatRepository, TheaterRepository theaterRepository, SeatConverter seatConverter, TheaterConverter theaterConverter, ShowtimeRepository showtimeRepository){
         this.seatRepository = seatRepository;
         this.theaterRepository = theaterRepository;
         this.seatConverter = seatConverter;
         this.theaterConverter = theaterConverter;
+        this.showtimeRepository = showtimeRepository;
     }
-    public List<SeatDTO> reserveSeat(List<SeatDTO> seats) {
-        List<Seat> saveSeats = new ArrayList<>();
-
-        for (SeatDTO seat : seats) {
-          /*  Seat set = new Seat();
-            set.setSeat_number(seat.seat_number());
-            set.setReserved(true);
-            set.setTheater(theaterRepository.findById(set.getTheater_ID()));
-
-           */
-
-          //  SeatDTO reserveseat = seatConverter.toDTO(seat);
-            Seat seatToSave = seatConverter.toEntity(seat);
-            saveSeats.add(seatToSave);
-            seatRepository.save(seatToSave);
-        }
-
-        System.out.println(saveSeats);
-        return saveSeats.stream().map(seatConverter::toDTO).collect(Collectors.toList());
+    public SeatDTO reserveSeat(SeatDTO seatDTO) {
+        Seat seatToUpdate = seatConverter.toEntity(seatDTO);
+        // Ensure it's the id from the path that is updated
+        seatToUpdate.setSeat_ID(seatDTO.seat_ID());
+        // Update the showtime in the seat
+        int showtimeID = seatDTO.showtime().getShowtime_ID();
+        seatToUpdate.setShowtime(showtimeRepository.findById(showtimeID).get());
+        Seat savedSeat = seatRepository.save(seatToUpdate);
+        return seatConverter.toDTO(savedSeat);
     }
-
 
   /*  public SeatDTO reserveSeat(SeatDTO seatDTO){
         Seat seatToSave = seatConverter.toEntity(seatDTO);
@@ -105,6 +99,13 @@ public class SeatService {
         } else {
             throw new SeatNotFoundException("Seat not found" + id);
         }
+    }
+
+    public List<SeatDTO> getSeatsByShowtimeId(int showtimeId) {
+        List<Seat> seats = seatRepository.findSeatsByShowtimeId(showtimeId);
+        return seats.stream()
+                .map(seatConverter::toDTO)
+                .collect(Collectors.toList());
     }
 
 

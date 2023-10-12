@@ -40,17 +40,14 @@ public class Movie
 
 
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
+    @JsonBackReference("movieTicket")
     private List<Ticket> tickets;
 
     @OneToOne(mappedBy = "movie", cascade = CascadeType.ALL)
     private Statistic statistic;
 
-    @ManyToMany
-    @JoinTable(
-            name="movie_showtime",
-            joinColumns=@JoinColumn(name="movie_id"),
-            inverseJoinColumns=@JoinColumn(name="showtime_id"))
-    @JsonBackReference
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
+    @JsonBackReference("movieShowtime")
     private Set<Showtime> showtimes;
 
     public Movie(int id, String title, String director, String description, String imgRef, int ageLimit, int duration, Set<Category> categories) {

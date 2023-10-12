@@ -24,6 +24,7 @@ public class SeatConverter {
                 seat.getSeat_number(),
                         seat.isReserved(),
                         seat.getTheater(),
-                seat.getSeat_Price());
+                seat.getSeat_Price(),
+                seat.getShowtime());
     }
 }

@@ -1,5 +1,4 @@
 package dk.kea.kinoxp_rest.config;
-
 import dk.kea.kinoxp_rest.JwtAuthenticationEntryPoint;
 import dk.kea.kinoxp_rest.JwtFilter;
 import lombok.AllArgsConstructor;
@@ -43,13 +42,20 @@ public class SecurityConfiguration implements WebMvcConfigurer {
                         .requestMatchers(new AntPathRequestMatcher("/category/**", HttpMethod.GET.name())).permitAll()  // Allow only GET requests to /movie
                         .requestMatchers(new AntPathRequestMatcher("/login")).permitAll()  // Allow all requests to /login
                         .requestMatchers(new AntPathRequestMatcher("/signup")).permitAll()  // Allow all requests to /signup
-                        .requestMatchers(new AntPathRequestMatcher("/seats")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/seats**")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/seats/*")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/customer")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/showtime")).permitAll()  // Allow all requests to /signup
                         .requestMatchers(new AntPathRequestMatcher("/update-showtime")).permitAll()  // Allow all requests to /signup
                         .requestMatchers(new AntPathRequestMatcher("/showtime/**")).permitAll()  // Allow all requests to /signup
+                        .requestMatchers(new AntPathRequestMatcher("/rating")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/update-showtime/*")).permitAll()  // Allow all requests to /signup
-                        .requestMatchers(new AntPathRequestMatcher("/**", HttpMethod.OPTIONS.name())).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/showtimes/*")).permitAll()  // Allow all requests to /signup
+
+                        .requestMatchers(new AntPathRequestMatcher("/seat")).permitAll()
+
+       .requestMatchers(new AntPathRequestMatcher("/**", HttpMethod.OPTIONS.name())).permitAll()
+
                         .anyRequest().authenticated()
                 )
                 .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint)

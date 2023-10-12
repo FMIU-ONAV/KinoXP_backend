@@ -1,4 +1,6 @@
 package dk.kea.kinoxp_rest.model;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,15 +20,14 @@ public class Seat {
     private double seat_Price;
     //private int theater_ID;
 
-
-    @OneToOne (cascade = CascadeType.ALL, mappedBy = "seat")
-    private Ticket ticket;
-
     @ManyToOne
     @JoinColumn(name = "theater_idfk")
     private Theater theater;
 
-
+    @ManyToOne
+    @JoinColumn(name = "showtime_idfk")
+    @JsonIgnore
+    private Showtime showtime;
 
 
 }
