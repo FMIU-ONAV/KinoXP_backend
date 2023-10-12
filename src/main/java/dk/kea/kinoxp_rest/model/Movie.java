@@ -28,7 +28,7 @@ public class Movie
     private String backdropRef;
     private int ageLimit;
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
+    @ManyToMany
     @JoinTable(
             name = "Movie_Category",
             joinColumns = @JoinColumn(name = "movie_id"),

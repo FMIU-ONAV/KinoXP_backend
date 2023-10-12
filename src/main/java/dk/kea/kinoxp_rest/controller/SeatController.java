@@ -67,6 +67,13 @@ public class SeatController {
         List<SeatDTO> seats = seatService.getSeatsByShowtimeId(showtimeId);
         return new ResponseEntity<>(seats, HttpStatus.OK);
     }
+
+    @GetMapping("/seat/{seatNumber}")
+    public ResponseEntity<SeatDTO> getSeatBySeatNumber(@PathVariable String seatNumber, @RequestParam int showtimeId){
+        SeatDTO seatDTO = seatService.getSeatBySeatNumber(seatNumber, showtimeId);
+        return ResponseEntity.ok(seatDTO);
+    }
+
 }
 
 

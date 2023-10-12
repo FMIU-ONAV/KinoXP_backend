@@ -108,5 +108,10 @@ public class SeatService {
                 .collect(Collectors.toList());
     }
 
+    public SeatDTO getSeatBySeatNumber(String seatNumber, int showtimeId){
+        Seat seat = seatRepository.findBySeat_numberAndShowtimeId(seatNumber, showtimeId);
+        return seatConverter.toDTO(seat);
+    }
+
 
 }
