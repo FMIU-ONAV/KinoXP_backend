@@ -24,23 +24,13 @@ public class SnackService {
         this.snackConverter = snackConverter;
     }
 
-    public List<SnackDTO> saveSnack(List<SnackDTO> snackDTO) {
-        /*Snack snackToSave = snackConverter.toEntity(snackDTO);
+    public SnackDTO saveSnack(SnackDTO snackDTO) {
+        Snack snackToSave = snackConverter.toEntity(snackDTO);
         // ensure its a create
         snackToSave.setSnack_ID(0);
         Snack savedSnack = snackRepository.save(snackToSave);
+        return snackConverter.toDTO(savedSnack);
 
-        return snackConverter.toDTO(savedSnack);*/
-        List<Snack> saveSnacks = new ArrayList<>();
-
-        for (SnackDTO Snacks : snackDTO) {
-            Snack snackToSave = snackConverter.toEntity(Snacks);
-            saveSnacks.add(snackToSave);
-            snackRepository.save(snackToSave);
-        }
-
-        System.out.println(saveSnacks);
-        return saveSnacks.stream().map(snackConverter::toDTO).collect(Collectors.toList());
     }
 
 
