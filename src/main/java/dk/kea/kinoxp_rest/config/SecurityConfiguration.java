@@ -58,6 +58,7 @@ public class SecurityConfiguration implements WebMvcConfigurer {
                         .requestMatchers(new AntPathRequestMatcher("/ticket**")).permitAll()  // Allow all requests to /signup
                         .requestMatchers(new AntPathRequestMatcher("/ticket/**")).permitAll()  // Allow all requests to /signup
                         .requestMatchers(new AntPathRequestMatcher("/snacks")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/snacks/**")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/seat")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/seat/*")).permitAll()
 

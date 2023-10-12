@@ -33,5 +33,12 @@ public class SnackService {
 
     }
 
+    public SnackDTO updateSnack(int id, SnackDTO snackDTO) {
+        Snack snackToUpdate = snackConverter.toEntity(snackDTO);
+        snackToUpdate.setSnack_ID(id);
+        Snack updatedSnack = snackRepository.save(snackToUpdate);
+        return snackConverter.toDTO(updatedSnack);
+    }
+
 
 }

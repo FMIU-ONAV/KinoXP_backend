@@ -26,4 +26,10 @@ public class SnackController {
         return new ResponseEntity<>(snack, HttpStatus.OK);
     }
 
+    @PutMapping("/snacks/{id}")
+    public ResponseEntity<SnackDTO> updateSnack(@PathVariable("id") int id, @RequestBody SnackDTO snackDTO) {
+        SnackDTO snack = snackService.updateSnack(id, snackDTO);
+        return new ResponseEntity<>(snack, HttpStatus.OK);
+    }
+
 }
