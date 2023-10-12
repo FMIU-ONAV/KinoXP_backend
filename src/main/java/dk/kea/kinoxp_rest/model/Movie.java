@@ -60,4 +60,6 @@ public class Movie
         this.duration = duration;
         this.categories = categories;
     }
+
+
 }

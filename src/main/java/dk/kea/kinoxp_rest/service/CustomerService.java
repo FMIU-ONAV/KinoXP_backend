@@ -2,6 +2,7 @@ package dk.kea.kinoxp_rest.service;
 
 import dk.kea.kinoxp_rest.dto.CustomerConverter;
 import dk.kea.kinoxp_rest.dto.CustomerDTO;
+import dk.kea.kinoxp_rest.exception.CustomerNotFoundException;
 import dk.kea.kinoxp_rest.model.Customer;
 import dk.kea.kinoxp_rest.repository.CustomerRepository;
 import jakarta.transaction.Transactional;
@@ -9,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
