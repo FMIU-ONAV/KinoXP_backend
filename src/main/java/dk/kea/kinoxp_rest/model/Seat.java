@@ -24,7 +24,7 @@ public class Seat {
     @JoinColumn(name = "theater_idfk")
     private Theater theater;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "showtime_idfk")
     @JsonIgnore
     private Showtime showtime;

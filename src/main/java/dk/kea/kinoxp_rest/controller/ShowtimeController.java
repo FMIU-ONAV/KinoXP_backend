@@ -50,4 +50,10 @@ public class ShowtimeController {
         Showtime showtime = showtimeService.findById(showtimeID);
         return ResponseEntity.ok(showtime);
     }
+
+    @DeleteMapping("/showtime/{showtimeID}")
+    public ResponseEntity deleteShowtime(@PathVariable int showtimeID){
+        showtimeService.deleteById(showtimeID);
+        return ResponseEntity.ok("Showtime with id " + showtimeID + " was deleted");
+    }
 }

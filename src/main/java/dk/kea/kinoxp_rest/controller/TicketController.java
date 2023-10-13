@@ -39,4 +39,6 @@ public class TicketController {
         List<Ticket> tickets = ticketService.findByShowtimeId(id);
         return ResponseEntity.ok(tickets);
     }
+
+
 }
