@@ -39,6 +39,9 @@ public class TicketService
         }
     }
 
+    public List<Ticket> findByShowtimeId(int showtimeId){
+        return ticketRepository.findByShowtimeId(showtimeId);
+    }
 
 
     public List<Ticket> findAll(){

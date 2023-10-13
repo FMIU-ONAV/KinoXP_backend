@@ -33,4 +33,10 @@ public class TicketController {
         List<Ticket> tickets = ticketService.findAll();
         return ResponseEntity.ok(tickets);
     }
+
+    @GetMapping("/ticket/showtime/{id}")
+    public ResponseEntity<List<Ticket>> getTicketsByShowtimeId(@PathVariable("id") int id){
+        List<Ticket> tickets = ticketService.findByShowtimeId(id);
+        return ResponseEntity.ok(tickets);
+    }
 }

@@ -61,6 +61,7 @@ public class SecurityConfiguration implements WebMvcConfigurer {
                         .requestMatchers(new AntPathRequestMatcher("/snacks/**")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/seat")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/seat/*")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/ticket/showtime/**")).permitAll()
 
        .requestMatchers(new AntPathRequestMatcher("/**", HttpMethod.OPTIONS.name())).permitAll()
 
